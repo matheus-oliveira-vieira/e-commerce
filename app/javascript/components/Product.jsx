@@ -20,4 +20,4 @@ const Product = () => {
   }, [params.id]);
 };
 
-export default Recipe;
+export default Product;
