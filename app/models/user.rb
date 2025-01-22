@@ -1,3 +1,7 @@
 class User < ApplicationRecord
-  validates :name, :email, :cpf, presence: true
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable
+  validates :cpf, presence: true
 end
