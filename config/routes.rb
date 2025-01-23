@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       post "products/create"
       get "/show/:id", to: "products#show"
       delete "/destroy/:id", to: "products#destroy"
+      get "/current_user", to: "users#current"
     end
   end
   root "homepage#index"
