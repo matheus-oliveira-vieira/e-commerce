@@ -5,6 +5,6 @@
               price: 100.0,
               stock_quantity: 5
             )
-  product.product_picture.attach(io: File.open(Rails.root.join("app", "assets", "images", "product.jpg")), filename: 'product.jpg', content_type: "image/jpg")
+  product.product_picture.attach(io: File.open(Rails.root.join("app", "assets", "images", "product.jpeg")), filename: 'product.jpeg', content_type: "image/jpeg")
   product.save!
 end

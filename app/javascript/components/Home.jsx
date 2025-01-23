@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import { Link } from "react-router-dom";
 import axios from 'axios';
+import Products from "./Products";
 
 
 export default function Home () {
@@ -64,6 +65,8 @@ export default function Home () {
       <p className="text-xl">
         Desafio técnico para vaga de desenvolvedor Ruby na Bluesoft
       </p>
+
+      <Products />
     </>
   )
 }

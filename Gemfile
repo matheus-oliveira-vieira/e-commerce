@@ -58,5 +58,5 @@ group :development do
   gem "web-console"
 end
 
-
+gem "active_model_serializers"
 gem "devise", "~> 4.9"

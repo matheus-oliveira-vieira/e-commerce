@@ -2,8 +2,8 @@ class Api::V1::ProductsController < ApplicationController
   before_action :set_product, only: %i[show destroy]
 
   def index
-    product = Product.all.order(created_at: :desc)
-    render json: product
+    products = Product.all
+    render json: products
   end
 
   def create
@@ -21,7 +21,7 @@ class Api::V1::ProductsController < ApplicationController
 
   def destroy
     @product&.destroy
-    render json: { message: 'Product deleted!' }
+    render json: { message: "Product deleted!" }
   end
 
   private
