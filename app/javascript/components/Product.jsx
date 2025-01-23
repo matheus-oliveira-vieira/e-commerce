@@ -4,20 +4,34 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 const Product = () => {
   const params = useParams();
   const navigate = useNavigate();
-  const [product, setProduct] = useState({ name: "" });
+  const [product, setProduct] = useState({});
 
   useEffect(() => {
-    const url = `/api/v1/show/${params.id}`;
-    fetch(url)
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
+    const fetchProduct = async (id) => {
+      try {
+        const response = await fetch(`/api/v1/products/${id}`);
+        if (!response.ok) {
+          throw new Error("Erro ao buscar produto");
         }
-        throw new Error("Network response was not ok.");
-      })
-      .then((response) => setProduct(response))
-      .catch(() => navigate("/products"));
+        const data = await response.json();
+        setProduct(data)
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchProduct(params.id)
   }, [params.id]);
+
+  return (
+    <>
+      {product.name}
+      {product.description}
+      {product.price}
+      {product.stock_quantity}
+
+      <Link to={`/`} className="btn custom-button">voltar a tela inicial</Link>
+    </>
+  )
 };
 
 export default Product;

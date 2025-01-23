@@ -6,11 +6,10 @@ export default function Products() {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const response = await fetch('/api/v1/products/index', {
+      const response = await fetch('/api/v1/products', {
         headers: { 'Accept': 'application/json' },
       });
       const data = await response.json();
-      console.log("data", data)
       setProducts(data);
     };
     fetchProducts()
@@ -36,7 +35,7 @@ export default function Products() {
                   />
                   <div className="card-body">
                     <h5 className="card-title">{product.name}</h5>
-                    <Link to={`/product/${product.id}`} className="btn custom-button">
+                    <Link to={`/products/${product.id}`} className="btn custom-button">
                       Ver Produto
                     </Link>
                   </div>
