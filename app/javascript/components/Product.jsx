@@ -3,8 +3,8 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 
 const Product = () => {
   const params = useParams();
-  const navigate = useNavigate();
   const [product, setProduct] = useState({});
+  const [cart, setCart] = useState(null);
 
   useEffect(() => {
     const fetchProduct = async (id) => {
@@ -24,12 +24,12 @@ const Product = () => {
 
   return (
     <>
+      {console.log(product)}
+      {console.log(cart)}
       {product.name}
       {product.description}
       {product.price}
-      {product.stock_quantity}
 
-      <Link to={`/add_to_cart/${product.id}`} className="btn custom-button">adicionar ao carrinho</Link>
       <Link to={`/`} className="btn custom-button">voltar a tela inicial</Link>
     </>
   )
