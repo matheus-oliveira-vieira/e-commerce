@@ -27,7 +27,7 @@ const Product = () => {
       {product.name}
       {product.description}
       {product.price}
-      {product.stock_quantity}
+      {/* {product.stock_quantity} */}
 
       <Link to={`/`} className="btn custom-button">voltar a tela inicial</Link>
     </>

@@ -1,5 +1,8 @@
 class Product < ApplicationRecord
-  validates :name, :description, :price, :stock_quantity, presence: true
+  has_many :line_items, dependent: :destroy
+  has_many :orders, through: :line_items
+
+  validates :name, :description, :price, presence: true
 
   has_one_attached :product_picture
 end

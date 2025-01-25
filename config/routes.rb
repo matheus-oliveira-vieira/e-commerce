@@ -3,8 +3,18 @@ Rails.application.routes.draw do
   root "homepage#index"
   namespace :api do
     namespace :v1 do
-      resources :products, only: %i[index show destroy create]
+      resources :products, only: %i[index show]
       get "/current_user", to: "users#current"
+
+      get "carts/:id", to: "carts#show"
+      delete "carts/:id", to: "carts#destroy"
+
+      post "line_items", to: "line_items#create"
+      post "line_items/:id/add", to: "line_items#add_quantity"
+      post "line_items/:id/reduce", to: "line_items#reduce_quantity"
+      delete "line_items/:id", to: "line_items#destroy"
+
+      resources :orders
     end
   end
 
