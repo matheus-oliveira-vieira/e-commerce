@@ -29,6 +29,7 @@ const Product = () => {
       {product.price}
       {product.stock_quantity}
 
+      <Link to={`/add_to_cart/${product.id}`} className="btn custom-button">adicionar ao carrinho</Link>
       <Link to={`/`} className="btn custom-button">voltar a tela inicial</Link>
     </>
   )
