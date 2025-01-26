@@ -58,7 +58,7 @@ group :development, :test do
 
   gem "pry-byebug", "~> 3.9"
 
-  gem 'faker'
+  gem "faker"
 end
 
 group :development do
