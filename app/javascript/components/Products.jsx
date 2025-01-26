@@ -17,33 +17,29 @@ export default function Products() {
 
   return (
     <>
-      <section className="jumbotron jumbotron-fluid text-center">
-        <div className="container py-5">
-          <h1 className="display-4">Produtos</h1>
-        </div>
-      </section>
-      <div className="py-5">
-        <main className="container">
-          <div className="row">
-            {products.map((product, index) => (
-              <div key={index} className="col-md-6 col-lg-4">
-                <div className="card mb-4">
-                  <img
-                    src={product.product_picture_url}
-                    className="card-img-top"
-                    alt={`${product.name} image`}
-                  />
-                  <div className="card-body">
-                    <h5 className="card-title">{product.name}</h5>
-                    <Link to={`/products/${product.id}`} className="btn custom-button">
-                      Ver Produto
-                    </Link>
-                  </div>
-                </div>
+      <div class="flex items-center justify-center m-3">
+
+        <h2 class="text-2xl font-bold text-gray-900">
+          Produtos disponíveis
+        </h2>
+      </div>
+
+      <div className="grid grid-cols-3 place-items-center">
+        {products.map((product, index) => (
+          <div key={index} className="mb-4">
+            <img
+                src={product.product_picture_url}
+                className="w-[300px] h-[300px] rounded-lg shadow-md"
+                alt={`${product.name} image`}
+              />
+              <div className="flex m-3 items-center justify-center">
+                <p class="mt-2 text-base text-gray-800">{product.name}</p>
+                <Link to={`/products/${product.id}`} className="text-white bg-green-700 font-semibold rounded-lg text-base p-2 ml-2.5">
+                  Ver detalhes
+                </Link>
               </div>
-            ))}
           </div>
-        </main>
+        ))}
       </div>
     </>
   );

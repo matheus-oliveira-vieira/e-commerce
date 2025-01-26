@@ -41,29 +41,37 @@ export default function Home () {
 
   return (
     <>
-      {currentUser.email && (
-        <>
-          <p>email: {currentUser.email}</p>
+      <div className="flex m-3">
+        {currentUser.email && (
+          <>
+            <p class="mt-2 text-base text-gray-800">
+              Logado como: {currentUser.email}
+            </p>
 
-          <button onClick={handleLogout} className="logout-button">
-            Sair
+            <button type="button" onClick={handleLogout} className="text-white bg-red-700 font-semibold rounded-lg text-base p-2 ml-2.5">
+              Sair
+            </button>
+          </>
+        )}
+
+        {!currentUser.email && (
+          <button type="button" onClick={handleLogin} className="text-white bg-blue-700 font-semibold rounded-lg text-base px-5 py-2.5 me-2 mb-2">
+            Entrar
           </button>
-        </>
-      )}
+        )}
+      </div>
 
-      {!currentUser.email && (
-        <button onClick={handleLogin} className="login-button">
-          Entrar
-        </button>
-      )}
+      <div class="flex items-center justify-center py-2 px-2">
+        <div class="max-w-md w-full space-y-8">
+          <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
+            Bluesoft E-commerce
+          </h2>
 
-      <p className="text-3xl font-bold">
-        Bluesoft E-commerce
-      </p>
-
-      <p className="text-xl">
-        Desafio técnico para vaga de desenvolvedor Ruby na Bluesoft
-      </p>
+          <p class="mt-2 text-center text-sm text-gray-600">
+            Desafio técnico para vaga de desenvolvedor Ruby na Bluesoft
+          </p>
+        </div>
+      </div>
 
       <Products />
     </>

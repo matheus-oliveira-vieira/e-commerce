@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :product do
-    name { "Vinho" }
-    description { "Vinho importado" }
-    price { 100.0 }
+    name { Faker::Commerce.product_name }
+    description { Faker::Quote.yoda }
+    price { Faker::Number.number(digits: 3) }
   end
 end

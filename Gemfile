@@ -54,9 +54,11 @@ group :development, :test do
 
   gem "rspec-rails", "~> 7.0.0"
 
-    gem "factory_bot_rails"
+  gem "factory_bot_rails"
 
-    gem "pry-byebug", "~> 3.9"
+  gem "pry-byebug", "~> 3.9"
+
+  gem 'faker'
 end
 
 group :development do
