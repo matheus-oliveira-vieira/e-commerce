@@ -11,8 +11,7 @@ Rails.application.routes.draw do
       patch "/update_quantity/:product_id", to: "carts#update_quantity", as: :update_quantity
       patch "/downgrade_quantity/:product_id", to: "carts#downgrade_quantity", as: :downgrade_quantity
       delete "/remove_product_from_cart/:product_id", to: "carts#remove_product_from_cart", as: :remove_product_from_cart
-      resources :carts, only: %i[show] do
-      end
+      get "/carts/:product_id", to: "carts#show"
     end
   end
   get "up" => "rails/health#show", as: :rails_health_check

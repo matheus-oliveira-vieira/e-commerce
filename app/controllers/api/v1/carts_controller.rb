@@ -2,13 +2,17 @@ class Api::V1::CartsController < ApplicationController
   before_action :authenticate_user!, only: [ :add_to_cart ]
 
   def create
-    return head :forbidden unless current_user.cart.present?
+    return head :forbidden if current_user.cart.present?
 
-    @cart = Cart.new(current_user)
-    render json: { message: "Successfully" } if @cart.save!
+    @cart = current_user.build_cart
+    if @cart.save!
+      render json: { message: "Successfully" }
+    else
+      render json: { errors: @cart.errors.full_messages }, status: :unprocessable_entity
+    end
   end
   def show
-    @cart = current_user.cart || Cart.new(current_user)
+    @cart = current_user.cart || current_user.build_cart
     @product = Product.find_by(id: params[:product_id])
 
     return head :forbidden if @cart.cart_items.empty?
@@ -23,7 +27,7 @@ class Api::V1::CartsController < ApplicationController
     return head :forbidden if @product.empty?
 
     if @product
-      @cart = current_user.cart || Cart.new(current_user)
+      @cart = current_user.cart || current_user.build_cart
       cart_item = @cart.cart_items.find_or_initialize_by(product: @product)
       cart_item.quantity ||= 1
       cart_item.assign_attributes(price: @product.price)

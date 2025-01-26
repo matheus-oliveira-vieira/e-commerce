@@ -55,6 +55,8 @@ group :development, :test do
   gem "rspec-rails", "~> 7.0.0"
 
     gem "factory_bot_rails"
+
+    gem "pry-byebug", "~> 3.9"
 end
 
 group :development do
