@@ -17,9 +17,9 @@ export default function Products() {
 
   return (
     <>
-      <div class="flex items-center justify-center m-3">
+      <div className="flex items-center justify-center m-3">
 
-        <h2 class="text-2xl font-bold text-gray-900">
+        <h2 className="text-2xl font-bold text-gray-900">
           Produtos disponíveis
         </h2>
       </div>
@@ -28,16 +28,16 @@ export default function Products() {
         {products.map((product, index) => (
           <div key={index} className="mb-4">
             <img
-                src={product.product_picture_url}
-                className="w-[300px] h-[300px] rounded-lg shadow-md"
-                alt={`${product.name} image`}
-              />
-              <div className="flex m-3 items-center justify-center">
-                <p class="mt-2 text-base text-gray-800">{product.name}</p>
-                <Link to={`/products/${product.id}`} className="text-white bg-green-700 font-semibold rounded-lg text-base p-2 ml-2.5">
-                  Ver detalhes
-                </Link>
-              </div>
+              src={product.product_picture_url}
+              className="w-[300px] h-[300px] rounded-lg shadow-md"
+              alt={`${product.name} image`}
+            />
+            <div className="flex m-3 items-center justify-center">
+              <p className="mt-2 text-base text-gray-800">{product.name}</p>
+              <Link to={`/products/${product.id}`} className="text-white bg-green-700 font-semibold rounded-lg text-base p-2 ml-2.5">
+                Ver detalhes
+              </Link>
+            </div>
           </div>
         ))}
       </div>

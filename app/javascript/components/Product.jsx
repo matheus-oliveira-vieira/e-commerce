@@ -22,13 +22,39 @@ const Product = () => {
     fetchProduct(params.id)
   }, [params.id]);
 
+  const formattedValue = new Intl.NumberFormat('pt-BR', {
+    style: 'currency',
+    currency: 'BRL'
+  }).format(product.price);
+
   return (
     <>
-      {console.log(product)}
-      {console.log(cart)}
-      {product.name}
-      {product.description}
-      {product.price}
+      <div class="flex items-center justify-center py-2 px-2 flex-col">
+        <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
+          {product.name}
+        </h2>
+        <div className="flex flex-row mt-14">
+          <img
+            src={product.product_picture_url}
+            className="w-[300px] h-[300px] rounded-lg shadow-md"
+            alt={`${product.name} image`}
+          />
+          <div className="flex flex-col ml-6">
+            <h3 class="text-xl font-extrabold text-gray-900">
+              Descrição
+            </h3>
+            <p>{product.description}</p>
+
+            <h3 class="mt-6 text-xl font-extrabold text-gray-900">
+              Valor
+            </h3>
+            <p>{formattedValue}</p>
+            <div className="mt-6">
+              <Link to={`/carts/${product.id}`} className="text-white bg-red-700 font-semibold rounded-lg text-base p-2">Adicionar ao carrinho</Link>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <Link to={`/`} className="btn custom-button">voltar a tela inicial</Link>
     </>

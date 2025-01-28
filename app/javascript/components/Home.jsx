@@ -44,7 +44,7 @@ export default function Home () {
       <div className="flex m-3">
         {currentUser.email && (
           <>
-            <p class="mt-2 text-base text-gray-800">
+            <p className="mt-2 text-base text-gray-800">
               Logado como: {currentUser.email}
             </p>
 
@@ -61,13 +61,13 @@ export default function Home () {
         )}
       </div>
 
-      <div class="flex items-center justify-center py-2 px-2">
-        <div class="max-w-md w-full space-y-8">
-          <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
+      <div className="flex items-center justify-center py-2 px-2">
+        <div className="max-w-md w-full space-y-8">
+          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
             Bluesoft E-commerce
           </h2>
 
-          <p class="mt-2 text-center text-sm text-gray-600">
+          <p className="mt-2 text-center text-sm text-gray-600">
             Desafio técnico para vaga de desenvolvedor Ruby na Bluesoft
           </p>
         </div>
