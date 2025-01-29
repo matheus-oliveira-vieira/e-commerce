@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { useCart } from "../context/CartContext";
 
-const Product = () => {
+export default function Product() {
   const params = useParams();
   const [product, setProduct] = useState({});
-  const [cart, setCart] = useState(null);
+  // const [cart, setCart] = useState(null);
+  const { addToCart } = useCart();
 
   useEffect(() => {
     const fetchProduct = async (id) => {
@@ -50,7 +52,7 @@ const Product = () => {
             </h3>
             <p>{formattedValue}</p>
             <div className="mt-6">
-              <Link to={`/carts/${product.id}`} className="text-white bg-red-700 font-semibold rounded-lg text-base p-2">Adicionar ao carrinho</Link>
+              <button onClick={() => addToCart(product.id)} className="text-white bg-red-700 font-semibold rounded-lg text-base p-2">Adicionar ao carrinho</button>
             </div>
           </div>
         </div>
@@ -60,5 +62,3 @@ const Product = () => {
     </>
   )
 };
-
-export default Product;

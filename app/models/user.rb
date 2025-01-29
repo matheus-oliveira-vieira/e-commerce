@@ -5,4 +5,12 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   validates :cpf, presence: true
+  has_one :cart, dependent: :destroy
+  after_create :create_cart
+
+  private
+
+  def create_cart
+    Cart.create(user: self)
+  end
 end
