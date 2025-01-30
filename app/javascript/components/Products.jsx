@@ -2,18 +2,18 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 export default function Products({ currentUser }) {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState([])
 
   useEffect(() => {
     const fetchProducts = async () => {
       const response = await fetch('/api/v1/products', {
         headers: { 'Accept': 'application/json' },
-      });
-      const data = await response.json();
-      setProducts(data);
-    };
+      })
+      const data = await response.json()
+      setProducts(data)
+    }
     fetchProducts()
-  }, []);
+  }, [])
 
   return (
     <>
@@ -42,5 +42,5 @@ export default function Products({ currentUser }) {
         ))}
       </div>
     </>
-  );
-};
+  )
+}

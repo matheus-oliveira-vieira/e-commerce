@@ -5,21 +5,21 @@ import Products from "./Products";
 
 
 export default function Home () {
-  const [currentUser, setCurrentUser] = useState(null);
+  const [currentUser, setCurrentUser] = useState(null)
 
   const handleLogin = () => {
-    window.location.href = "/users/sign_in";
-  };
+    window.location.href = "/users/sign_in"
+  }
 
   useEffect(() => {
     axios.get("/api/v1/current_user")
       .then(response => {
-        setCurrentUser(response.data);
+        setCurrentUser(response.data)
       })
       .catch(error => {
-        console.error("Erro ao buscar o usuário atual:", error);
-      });
-  }, []);
+        console.error("Erro ao buscar o usuário atual:", error)
+      })
+  }, [])
 
   const handleLogout = () => {
     axios
@@ -29,15 +29,15 @@ export default function Home () {
         },
       })
       .then((response) => {
-        window.location.href = "/";
+        window.location.href = "/"
       })
       .catch((error) => {
-        console.error("Erro ao deslogar:", error);
-      });
-  };
+        console.error("Erro ao deslogar:", error)
+      })
+  }
 
   if (!currentUser) {
-    return <div>Carregando...</div>;
+    return <div>Carregando...</div>
   }
 
   return (

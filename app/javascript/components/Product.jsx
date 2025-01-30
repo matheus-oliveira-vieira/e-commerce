@@ -3,32 +3,29 @@ import { Link, useParams, useLocation } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 
 export default function Product() {
-  const params = useParams();
-  const [product, setProduct] = useState({});
-  const { addToCart } = useCart();
+  const params = useParams()
+  const [product, setProduct] = useState({})
+  const { addToCart } = useCart()
   const location = useLocation()
   const { currentUser } = location.state
 
   useEffect(() => {
     const fetchProduct = async (id) => {
       try {
-        const response = await fetch(`/api/v1/products/${id}`);
+        const response = await fetch(`/api/v1/products/${id}`)
         if (!response.ok) {
-          throw new Error("Erro ao buscar produto");
+          throw new Error("Erro ao buscar produto")
         }
-        const data = await response.json();
+        const data = await response.json()
         setProduct(data)
       } catch (error) {
-        console.error(error);
+        console.error(error)
       }
-    };
+    }
     fetchProduct(params.id)
-  }, [params.id]);
+  }, [params.id])
 
-  const formattedValue = new Intl.NumberFormat('pt-BR', {
-    style: 'currency',
-    currency: 'BRL'
-  }).format(product.price);
+  const formattedValue = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL'}).format(product.price)
 
   return (
     <>
@@ -54,7 +51,8 @@ export default function Product() {
             </h3>
             <p>{formattedValue}</p>
             <div className="mt-6">
-              <Link 
+              {currentUser.email ? (
+                <Link 
                 to={`/cart`}
                 className="text-white bg-red-700 font-semibold rounded-lg text-base p-2"
                 onClick={() => addToCart(product.id)}
@@ -62,6 +60,9 @@ export default function Product() {
               >
                 Adicionar ao carrinho
               </Link>
+              ) : (
+                <p>Faça login para adicionar ao carrinho</p>
+              )}
             </div>
           </div>
         </div>
@@ -69,4 +70,4 @@ export default function Product() {
       </div>
     </>
   )
-};
+}
