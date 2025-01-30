@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useLocation } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 
 export default function Product() {
   const params = useParams();
   const [product, setProduct] = useState({});
-  // const [cart, setCart] = useState(null);
   const { addToCart } = useCart();
+  const location = useLocation()
+  const { currentUser } = location.state
 
   useEffect(() => {
     const fetchProduct = async (id) => {
@@ -31,8 +32,9 @@ export default function Product() {
 
   return (
     <>
-      <div class="flex items-center justify-center py-2 px-2 flex-col">
-        <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
+      {console.log(product)}
+      <div className="flex items-center justify-center py-2 px-2 flex-col">
+        <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
           {product.name}
         </h2>
         <div className="flex flex-row mt-14">
@@ -42,23 +44,29 @@ export default function Product() {
             alt={`${product.name} image`}
           />
           <div className="flex flex-col ml-6">
-            <h3 class="text-xl font-extrabold text-gray-900">
+            <h3 className="text-xl font-extrabold text-gray-900">
               Descrição
             </h3>
             <p>{product.description}</p>
 
-            <h3 class="mt-6 text-xl font-extrabold text-gray-900">
+            <h3 className="mt-6 text-xl font-extrabold text-gray-900">
               Valor
             </h3>
             <p>{formattedValue}</p>
             <div className="mt-6">
-              <button onClick={() => addToCart(product.id)} className="text-white bg-red-700 font-semibold rounded-lg text-base p-2">Adicionar ao carrinho</button>
+              <Link 
+                to={`/cart`}
+                className="text-white bg-red-700 font-semibold rounded-lg text-base p-2"
+                onClick={() => addToCart(product.id)}
+                state={{ currentUser: currentUser }}
+              >
+                Adicionar ao carrinho
+              </Link>
             </div>
           </div>
         </div>
+        <Link to={`/`} className="text-white bg-blue-700 font-semibold rounded-lg text-base px-5 py-2.5 me-2 mb-2">Voltar para a tela inicial</Link>
       </div>
-
-      <Link to={`/`} className="btn custom-button">voltar a tela inicial</Link>
     </>
   )
 };

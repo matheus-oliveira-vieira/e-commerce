@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from "react";
+import { Link } from "react-router-dom";
 import axios from 'axios';
 import Products from "./Products";
 
@@ -41,16 +42,19 @@ export default function Home () {
 
   return (
     <>
-      <div className="flex m-3">
+      <div className="flex m-3 justify-between items-center">
         {currentUser.email && (
           <>
-            <p className="mt-2 text-base text-gray-800">
-              Logado como: {currentUser.email}
-            </p>
+            <div className="flex items-center">
+              <p className="mt-2 text-base text-gray-800">
+                Logado como: {currentUser.email}
+              </p>
 
-            <button type="button" onClick={handleLogout} className="text-white bg-red-700 font-semibold rounded-lg text-base p-2 ml-2.5">
-              Sair
-            </button>
+              <button type="button" onClick={handleLogout} className="text-white bg-red-700 font-semibold rounded-lg text-base p-2 ml-2.5">
+                Sair
+              </button>
+            </div>
+            <Link to={`/cart`} state={{ currentUser: currentUser }} className="text-white bg-blue-700 font-semibold rounded-lg text-base px-5 py-2.5 me-2 mb-2">Ir para o carrinho</Link>
           </>
         )}
 
@@ -73,7 +77,7 @@ export default function Home () {
         </div>
       </div>
 
-      <Products />
+      <Products currentUser={currentUser}/>
     </>
   )
 }

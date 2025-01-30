@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-export default function Products() {
+export default function Products({ currentUser }) {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -34,7 +34,7 @@ export default function Products() {
             />
             <div className="flex m-3 items-center justify-center">
               <p className="mt-2 text-base text-gray-800">{product.name}</p>
-              <Link to={`/products/${product.id}`} className="text-white bg-green-700 font-semibold rounded-lg text-base p-2 ml-2.5">
+              <Link to={`/products/${product.id}`} state={{ currentUser: currentUser }} className="text-white bg-green-700 font-semibold rounded-lg text-base p-2 ml-2.5">
                 Ver detalhes
               </Link>
             </div>
