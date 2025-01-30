@@ -29,7 +29,6 @@ export default function Product() {
 
   return (
     <>
-      {console.log(product)}
       <div className="flex items-center justify-center py-2 px-2 flex-col">
         <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
           {product.name}

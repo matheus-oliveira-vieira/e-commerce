@@ -13,7 +13,6 @@ export default function Cart(){
 
   return (
     <>
-      {console.log("Cart data:", cart)}
       <div className="flex items-center justify-center py-2 px-2 flex-col">
         <div className="max-w-md w-full space-y-8">
           <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
@@ -24,16 +23,15 @@ export default function Cart(){
               O carrinho está vazio
             </p>
           ) : (
-            <div className="flex flex-col mt-14">
+            <div className="mt-14">
               {cart.cart_items.map((item) => (
-                <div key={item.id} className="mb-4">
-                  {console.log("Product data:", item.product)}
+                <div key={item.id} className="flex flex-row">
                   <img
                     src={item.product.product_picture_url}
                     className="w-[100px] h-[100px] rounded-lg shadow-md"
                     alt={`${item.product.name} image cart`}
                   />
-                  <div className="flex items-center justify-center w-fit">
+                  <div className="flex items-center justify-center">
                     <h3 className="text-xl font-bold text-gray-900">
                       {item.product.name}
                     </h3>
