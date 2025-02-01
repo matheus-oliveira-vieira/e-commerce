@@ -67,7 +67,22 @@ class Api::V1::CartItemsController < ApplicationController
       total_price = @cart.cart_items.includes(:product).sum { |cart_item| cart_item.product.price * cart_item.quantity }
       @cart.update!(total_price: total_price)
 
-      render json: { id: @cart.id, total_price: @cart.total_price, cart_items: @cart.cart_items }, status: :ok
+      render json: {
+        id: @cart.id,
+        total_price: @cart.total_price,
+        cart_items: @cart.cart_items.map do |cart_item|
+          {
+            id: cart_item.id,
+            quantity: cart_item.quantity,
+            product: {
+              id: cart_item.product.id,
+              name: cart_item.product.name,
+              price: cart_item.product.price,
+              product_picture_url: cart_item.product.product_picture.attached? ? Rails.application.routes.url_helpers.rails_blob_url(cart_item.product.product_picture, only_path: true) : nil
+            }
+          }
+        end
+      }, status: :ok
     else
       render json: { error: "Item não encontrado" }, status: :not_found
     end
