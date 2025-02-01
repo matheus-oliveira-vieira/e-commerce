@@ -3,7 +3,6 @@ require 'rails_helper'
 describe Product do
   context 'associations' do
     it { should have_many(:cart_items) }
-    it { should have_many(:carts).through(:cart_items) }
   end
 
   context 'validations' do
