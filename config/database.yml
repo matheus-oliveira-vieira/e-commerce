@@ -82,6 +82,7 @@ production:
   primary: &primary_production
     <<: *default
     database: e_commerce_production
+    url: postgres://ue1k9fs2oo5jcj:p6ab208471826cf92d475507c9302774d52f50c748cf6cefd4657386bcb2c6dff@cat670aihdrkt1.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com:5432/dda8229bqrnrep
     username: e_commerce
     password: <%= ENV["E_COMMERCE_DATABASE_PASSWORD"] %>
   cache:
