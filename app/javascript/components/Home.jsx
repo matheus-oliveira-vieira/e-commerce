@@ -54,7 +54,10 @@ export default function Home () {
                 Sair
               </button>
             </div>
-            <Link to={`/cart`} state={{ currentUser: currentUser }} className="text-white bg-blue-700 font-semibold rounded-lg text-base px-5 py-2.5 me-2 mb-2">Ir para o carrinho</Link>
+            <div className="flex items-right">
+              <Link to={`/orders`} className="text-white bg-green-700 font-semibold rounded-lg text-base px-5 py-2.5 me-2 mb-2">Meus pedidos</Link>
+              <Link to={`/cart`} state={{ currentUser: currentUser }} className="text-white bg-blue-700 font-semibold rounded-lg text-base px-5 py-2.5 me-2 mb-2">Ir para o carrinho</Link>
+            </div>
           </>
         )}
 

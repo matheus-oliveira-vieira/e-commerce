@@ -1,11 +1,10 @@
 import React from "react";
-import { useLocation, Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 
 export default function Cart(){
-  const { cart, updateQuantity, removeFromCart } = useCart()
-  const location = useLocation()
-  const { currentUser } = location.state
+  const { cart, updateQuantity, removeFromCart, createOrder } = useCart()
+  const navigate = useNavigate()
 
   if (!cart) return <p>Carregando carrinho...</p>
 
@@ -64,6 +63,7 @@ export default function Cart(){
             </div>
           )}
         </div>
+        {cart.cart_items.length !== 0 && (<button onClick={() => createOrder(navigate)} className="text-white bg-red-700 font-semibold rounded-lg text-base px-5 py-2.5">Criar pedido</button>)}
         <Link to={`/`} className="text-white bg-blue-700 font-semibold rounded-lg text-base px-5 py-2.5 me-2 mb-2 mt-3">Voltar para a tela inicial</Link>
       </div>
     </>

@@ -5,6 +5,7 @@ import Products from "../components/Products";
 import Product from "../components/Product";
 import { CartProvider } from "../context/CartContext"
 import Cart from "../components/Cart";
+import OrdersList from "../components/OrdersList";
 
 export default (
   <CartProvider>
@@ -14,6 +15,7 @@ export default (
         <Route path="/products" element={<Products />} />
         <Route path="/products/:id" element={<Product />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/orders" element={<OrdersList />} />
       </Routes>
     </Router>
   </CartProvider>

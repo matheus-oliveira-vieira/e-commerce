@@ -65,8 +65,49 @@ export const CartProvider = ({ children }) => {
       .catch((err) => console.error("Erro ao remover item:", err));
   }
 
+  const createOrder = (navigate) => {
+    fetch("/api/v1/orders", {
+      method: "POST",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRF-Token": document.cookie
+          .split("; ")
+          .find((row) => row.startsWith("CSRF-TOKEN="))
+          ?.split("=")[1],
+      }
+    })
+      .then((res) => res.json())
+      .then(() => {
+        setCart(null)
+        navigate('/orders')
+      })
+      .catch((err) => console.error("Erro ao criar pedido:", err));
+  }
+
+  const getUserOrders = async () => {
+    try {
+      const response = await fetch("/api/v1/orders", {
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+          "X-CSRF-Token": document.cookie
+            .split("; ")
+            .find((row) => row.startsWith("CSRF-TOKEN="))
+            ?.split("=")[1],
+        },
+      })
+      if (!response.ok) throw new Error("Erro ao buscar pedidos");
+
+      return await response.json();
+    } catch (error) {
+      console.error(error);
+      return [];
+    }
+  };
+
   return (
-    <CartContext.Provider value={{ cart, addToCart, updateQuantity, removeFromCart }}>
+    <CartContext.Provider value={{ cart, addToCart, updateQuantity, removeFromCart, createOrder, getUserOrders }}>
       {children}
     </CartContext.Provider>
   )
