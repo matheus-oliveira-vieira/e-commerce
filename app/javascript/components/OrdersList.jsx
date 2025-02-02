@@ -21,7 +21,7 @@ export default function OrdersList(){
           </h2>
           {orders.length === 0 ? (
             <p className="mt-2 text-base text-center text-gray-800">
-              O carrinho está vazio
+              Não existem pedidos feitos
             </p>
           ) : (
             <div className="mt-14">
