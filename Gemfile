@@ -59,9 +59,8 @@ group :development, :test do
   gem "factory_bot_rails"
 
   gem "pry-byebug", "~> 3.9"
-
-  gem "faker"
 end
+
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
@@ -75,3 +74,4 @@ end
 
 gem "active_model_serializers"
 gem "devise", "~> 4.9"
+gem "faker"
